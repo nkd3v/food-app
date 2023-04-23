@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 import Home from "./Pages/HomePage/Home"
 
@@ -17,8 +17,8 @@ import UserRating from "./Pages/Customer/UserRatingPage/UserRating"
 
 function App() {
   return (
-    <div>
-      <Router>
+    <>
+      <div>
         <Routes>
           <Route index element={<Home />} />
 
@@ -34,9 +34,9 @@ function App() {
           <Route path="userRating" element={<UserRating />} />
 
         </Routes>
-      </Router>
 
-    </div>
+      </div>
+    </>
   );
 }
 
