@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
+import { Navbar } from "./Components/Navbar"
 
 import Home from "./Pages/HomePage/Home"
 
@@ -18,24 +20,26 @@ import UserRating from "./Pages/Customer/UserRatingPage/UserRating"
 function App() {
   return (
     <>
-      <div>
-        <Routes>
-          <Route index element={<Home />} />
+      <Navbar />
+      <Container>
+        <div>
+          <Routes>
+            <Route index element={<Home />} />
 
-          <Route path="customerList" element={<CustomerList />} />
-          <Route path="takeOrder" element={<TakeOrder />} />
-          <Route path="finishRider" element={<FinishRider />} />
+            <Route path="customerList" element={<CustomerList />} />
+            <Route path="takeOrder" element={<TakeOrder />} />
+            <Route path="finishRider" element={<FinishRider />} />
 
-          <Route path="shop" element={<Shop />} />
-          <Route path="menu" element={<Menu />} />
-          <Route path="shoppingCart" element={<ShoppingCart />} />
-          <Route path="payment" element={<Payment />} />
-          <Route path="tracking" element={<Tracking />} />
-          <Route path="userRating" element={<UserRating />} />
+            <Route path="shop" element={<Shop />} />
+            <Route path="menu" element={<Menu />} />
+            <Route path="shoppingCart" element={<ShoppingCart />} />
+            <Route path="payment" element={<Payment />} />
+            <Route path="tracking" element={<Tracking />} />
+            <Route path="userRating" element={<UserRating />} />
 
-        </Routes>
-
-      </div>
+          </Routes>
+        </div>
+      </Container>
     </>
   );
 }
