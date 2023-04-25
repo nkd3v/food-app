@@ -1,6 +1,7 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Router } from 'react-router-dom'
 
 import Home from "./Pages/HomePage/Home"
+import AboutUs from "./Pages/HomePage/AboutUs"
 
 //Rider
 import CustomerList from "./Pages/Rider/CustomerListPage/CustomerList"
@@ -18,9 +19,10 @@ import UserRating from "./Pages/Customer/UserRatingPage/UserRating"
 function App() {
   return (
     <>
-      <div>
+      <Router>
         <Routes>
           <Route index element={<Home />} />
+          <Route path="aboutUs" element={<AboutUs />} />
 
           <Route path="customerList" element={<CustomerList />} />
           <Route path="takeOrder" element={<TakeOrder />} />
@@ -35,7 +37,7 @@ function App() {
 
         </Routes>
 
-      </div>
+      </Router>
     </>
   );
 }
