@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FoodCard from '../../../Components/FoodCard';
+import FoodCard from '../../../Components/foodCard/FoodCard';
 import './Menu.css' ;
 
 const Menu = () => {
