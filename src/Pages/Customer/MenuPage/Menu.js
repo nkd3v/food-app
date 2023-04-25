@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FoodCard from '../../../Components/FoodCard';
+import './Menu.css' ;
 
 const Menu = () => {
   const [foodList, setFoodList] = useState([]);
@@ -22,12 +23,10 @@ const Menu = () => {
   return (
     <>
       <h1>Menu</h1>
-      <div>
-        <ul>
+      <div className = "foodCard_container">
           {foodList.map((food) => (
             <FoodCard key={food.id} {...food} />
           ))}
-        </ul>
       </div>
     </>
   )

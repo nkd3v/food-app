@@ -1,0 +1,27 @@
+.button_amount_foodCard{
+    border-radius: 25px;
+    background: #aaaba9;
+    width: 25px;
+    height: 25px;
+    border-color: transparent;
+    color: white;
+    padding: 0px;
+    margin: 0 0.5rem;
+    font-size: small;
+
+}
+
+.counter_foodCard{
+    /* margin: '0px 8px'; */
+    border: solid #aaaba9 1px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.button_addToCard{
+    background-color: #2FBF57;
+    border-radius: 5px;
+    border-color: transparent;
+    padding: 5px 15px ;
+    color: white;
+}
