@@ -1,3 +1,9 @@
+.foodCard_container_component{
+    width: 40%;
+}
+.descript_container{
+    margin-left: 1.5rem;
+}
 .button_amount_foodCard{
     border-radius: 25px;
     background: #aaaba9;
