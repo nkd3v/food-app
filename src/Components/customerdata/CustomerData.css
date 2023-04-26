@@ -1,0 +1,10 @@
+.row>div{
+    text-align: center;
+    border-style: dotted;
+    border-color: chartreuse;
+    
+}
+.row div{
+    text-align: center;
+}
+
