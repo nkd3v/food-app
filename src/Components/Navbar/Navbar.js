@@ -17,6 +17,7 @@ export function Navbar() {
                     </Nav.Link>
                 </Nav>
                 <Button
+                    onClick={event =>  window.location.href='/shoppingCart'}
                     style={{ width: "3rem", height: "3rem" }}
                     variant="outline-primary"
                 >

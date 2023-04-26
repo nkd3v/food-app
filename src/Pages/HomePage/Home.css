@@ -1,0 +1,41 @@
+.login_container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.card_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    height: 30rem;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 10px;
+  }
+  
+  .card_:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+p{
+    font-size: large;
+}
+img{
+    margin-bottom: 20px;
+}
+.login_button{ 
+    width:fit-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-color: transparent;
+    background-color: #2FBF57;
+    color: white;
+    font-size: large;
+}
+
+.login_button:hover{
+    background-color: #36b058;
+}

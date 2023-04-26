@@ -1,6 +1,17 @@
+import Cart from "../../../Components/ShoppingCart/Cart";
+
 const ShoppingCart = () => {
     return(
-        <h1>ShoppingCart</h1>
+        <>
+        <div className="p-4 m-4 d-flex justify-content-center rounded shadow">
+            Shop
+        </div>
+        <div>
+            <Cart/>
+            <Cart/>
+            <Cart/>
+        </div>
+        </>
     ) 
   };
   
