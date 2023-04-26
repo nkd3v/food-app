@@ -1,6 +1,19 @@
+import ShopCard from '../../../Components/ShopCard/ShopCard'
+import './Shop.css'
+
 const Shop = () => {
     return(
-        <h1>Shop</h1>
+        <div>
+            <h1>choose a restaurant</h1>
+            <div className='ShopCard_container'>
+                <ShopCard />
+                <ShopCard />
+                <ShopCard />
+                <ShopCard />
+                <ShopCard />    
+                <ShopCard />
+            </div>
+        </div>
     ) 
   };
   
