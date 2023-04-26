@@ -1,10 +1,26 @@
 .row>div{
     text-align: center;
-    border-style: dotted;
-    border-color: chartreuse;
-    
 }
 .row div{
     text-align: center;
+    justify-content: space-around;
+    
 }
 
+
+
+.row div button{
+    background-color: rgb(66, 240, 107);
+    padding: 8px 40px;
+    justify-self: center;
+    border-radius: 5px;
+    transition : background-color 0.5s;
+    border-style: none;
+    width:fit-content;
+    
+}
+
+.row div button:hover{
+    background-color: rgb(49, 177, 79);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
