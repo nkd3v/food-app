@@ -16,9 +16,10 @@ function CustomerData() {
                 <p>my house</p> 
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2 border">
-                <button className='see'>
-                <p>see</p> 
-                </button>
+                
+                <button 
+                className="see"
+                onClick={event =>  window.location.href='/TakeOrder'}>see</button>
             </div>
             </div>
         </div>
