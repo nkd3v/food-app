@@ -1,6 +1,6 @@
 .shopName_container{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 2rem;
     margin: 2rem;
     border-radius: 10px;

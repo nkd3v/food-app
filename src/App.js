@@ -18,9 +18,11 @@ import Payment from "./Pages/Customer/PaymentPage/Payment"
 import Tracking from "./Pages/Customer/TrackingPage/Tracking"
 import UserRating from "./Pages/Customer/UserRatingPage/UserRating"
 
+import { ShoppingCartPorvider } from './Context/ShoppingCartContext'
+
 function App() {
   return (
-    <>
+    <ShoppingCartPorvider>
       <Navbar />
       <Container>
         <div>
@@ -42,7 +44,7 @@ function App() {
           </Routes>
         </div>
       </Container>
-    </>
+    </ShoppingCartPorvider>
   );
 }
 
