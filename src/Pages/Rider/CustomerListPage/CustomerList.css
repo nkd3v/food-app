@@ -1,0 +1,10 @@
+.list_container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.list_container div{
+    text-align: center;
+}
