@@ -1,4 +1,6 @@
 .cart_container{
-    height: 100px;
-    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    margin: 2rem;
 }

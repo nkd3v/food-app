@@ -1,0 +1,8 @@
+.shopName_container{
+    display: flex;
+    justify-content: start;
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 10px;
+    border:2px solid black;
+}

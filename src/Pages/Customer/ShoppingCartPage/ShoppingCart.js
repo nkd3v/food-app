@@ -1,9 +1,10 @@
 import Cart from "../../../Components/ShoppingCart/Cart";
+import "./ShoppingCart.css"
 
 const ShoppingCart = () => {
     return(
         <>
-        <div className="p-4 m-4 d-flex justify-content-center rounded shadow">
+        <div className="shopName_container">
             Shop
         </div>
         <div>
