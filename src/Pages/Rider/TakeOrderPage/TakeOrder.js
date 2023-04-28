@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+import Order from "../../../Components/Order/Order";
 
 const TakeOrder = () => {
-    const [orderData, setOrderData] = useState(null);
-    const [order, setOrder] = useState(null);
+    const [orderData, setOrderData] = useState([]);
+    const [order, setOrder] = useState({});
     const { id } = useParams()
 
     useEffect(() => {
@@ -22,26 +24,15 @@ const TakeOrder = () => {
     }, []);
 
     useEffect(() => {
-        if (orderData) {
+        if (orderData.length > 0) {
             setOrder(orderData.find(item => item.id === id))
         }
     }, [orderData, id])
 
-    return order ? (
+    return order?.id ? (
         <>
-            <p>รหัสคำสั่งซื้อ: {order.id}</p>
-            <p>ผู้ใช้บริการ: {order.user.firstName} {order.user.lastName}</p>
-            <p>ร้านอาหาร: {order.orderItems[0].menu.restaurant}</p>
-            <p>รายการอาหาร:</p>
-            <ul>
-                {order.orderItems.map(
-                    item => <li>{item.quantity}x {item.menu.foodName}</li>
-                )}
-            </ul>
-            <p>จุดส่งอาหาร: {order.user.address}</p>
-            <p>การชำระเงิน: {order.id}</p>
-            <p>สถานะ: {order.status}</p>
-            <Button>Take Order</Button>
+            <Order key={uuidv4()} {...order} />
+            <Button key={uuidv4()}>Take Order</Button>
         </>
     ) : <p>Loading...</p>
 };

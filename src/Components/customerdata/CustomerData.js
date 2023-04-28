@@ -3,10 +3,7 @@ import './CustomerData.css'
 import { Link } from 'react-router-dom';
 
 function CustomerData({ id, order }) {
-    console.log({ id, order })
-
     return (
-
         <div className="container">
             <div className="row">
                 <div className="col-sm-2 col-md-2 col-lg-2 border">
@@ -27,8 +24,6 @@ function CustomerData({ id, order }) {
                 </div>
             </div>
         </div>
-
-
     )
 }
 

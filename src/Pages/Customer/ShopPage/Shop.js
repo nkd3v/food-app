@@ -40,7 +40,7 @@ const Shop = () => {
         <div>
             <h1>choose a restaurant</h1>
             <div className='ShopCard_container'>
-                {shopList ? shopList.map(shop => (
+                {shopList.length > 0 ? shopList.map(shop => (
                     <ShopCard key={SHA256(shop).toString()} id={SHA256(shop).toString()} name={shop} />
                 )) : (
                     <p>Loading...</p>

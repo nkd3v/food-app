@@ -1,9 +1,11 @@
-import { v4 } from "uuid";
-import "./Cart.css"
+import React from 'react'
+import { v4 } from 'uuid'
 
-function Cart(order){
+function Order(order) {
     return (
         <>
+            <p>รหัสคำสั่งซื้อ: {order.id}</p>
+            <p>ผู้ใช้บริการ: {order.user.firstName} {order.user.lastName}</p>
             <p>ร้านอาหาร: {order.orderItems[0].menu.restaurant}</p>
             <p>รายการอาหาร:</p>
             <ul>
@@ -17,4 +19,5 @@ function Cart(order){
         </>
     )
 }
-export default Cart;
+
+export default Order

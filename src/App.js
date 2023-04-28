@@ -19,6 +19,9 @@ import Tracking from "./Pages/Customer/TrackingPage/Tracking"
 import UserRating from "./Pages/Customer/UserRatingPage/UserRating"
 
 import { ShoppingCartPorvider } from './Context/ShoppingCartContext'
+import RegisterCustomer from './Pages/Customer/Register/RegisterCustomer'
+import RegisterMerchant from './Pages/Merchant/Register/RegisterMerchant'
+import RegisterRider from './Pages/Rider/Register/RegisterRider'
 
 function App() {
   return (
@@ -40,6 +43,10 @@ function App() {
             <Route path="payment" element={<Payment />} />
             <Route path="tracking" element={<Tracking />} />
             <Route path="userRating" element={<UserRating />} />
+
+            <Route path="register/customer" element={<RegisterCustomer />} />
+            <Route path="register/merchant" element={<RegisterMerchant />} />
+            <Route path="register/rider" element={<RegisterRider />} />
 
           </Routes>
         </div>

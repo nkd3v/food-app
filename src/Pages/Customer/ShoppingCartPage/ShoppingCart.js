@@ -1,29 +1,31 @@
 import { Button } from "react-bootstrap";
 import Cart from "../../../Components/ShoppingCart/Cart";
 import "./ShoppingCart.css"
+import { v4 } from "uuid";
 
 const ShoppingCart = () => {
   let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 
-  const handleCheckout = async () => {
-    const mockUser = {
-      "id": "ffffffffffffffffffffffff",
-      "username": "string",
-      "email": "string",
-      "phoneNumber": "string",
-      "role": "string",
-      "address": "string",
-      "coordinate": "string",
-      "firstName": "string",
-      "lastName": "string"
-    };
+  const mockUser = {
+    "id": "ffffffffffffffffffffffff",
+    "username": "string",
+    "email": "string",
+    "phoneNumber": "string",
+    "role": "string",
+    "address": "string",
+    "coordinate": "string",
+    "firstName": "string",
+    "lastName": "string"
+  };
 
-    const order = {
-      user: mockUser,
-      orderItems: cartItems,
-      detail: "string",
-      status: 0
-    }
+  const order = {
+    user: mockUser,
+    orderItems: cartItems,
+    detail: "string",
+    status: 0
+  }
+
+  const handleCheckout = async () => {
 
     await fetch('https://api.dishdrop.pp.ua/api/order', {
       method: 'POST',
@@ -48,12 +50,20 @@ const ShoppingCart = () => {
       <div className="shopName_container">
         Shop
       </div>
-      <div>
-        {cartItems?.map?.(item => <Cart key={item.menu.id} {...item} />)}
-      </div>
-      <Button onClick={handleCheckout}>
-        Checkout
-      </Button>
+      {cartItems.length > 0 ? (
+        <>
+          <div>
+            <Cart key={v4()} {...order} />
+          </div>
+          <Button onClick={handleCheckout}>
+            Checkout
+          </Button>
+        </>
+      ) : (
+        <>
+          <p>Your cart is empty 🛒</p>
+        </>
+      )}
     </>
   )
 };
