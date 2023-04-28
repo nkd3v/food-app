@@ -25,7 +25,7 @@ const ShoppingCart = () => {
       status: 0
     }
 
-    const res = await fetch('https://api.dishdrop.pp.ua/api/menu', {
+    await fetch('https://api.dishdrop.pp.ua/api/menu', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,6 @@ const ShoppingCart = () => {
       .catch(error => {
         console.error('Error:', error);
       });
-    console.log(res)
   }
 
   return (

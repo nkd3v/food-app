@@ -20,7 +20,6 @@ export function ShoppingCartPorvider({ children }) {
 
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems))
-        console.log(cartItems, JSON.stringify(cartItems))
     }, [cartItems])
 
     function getItemQuantity(menu) {
