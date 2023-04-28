@@ -25,7 +25,7 @@ const ShoppingCart = () => {
       status: 0
     }
 
-    await fetch('https://api.dishdrop.pp.ua/api/menu', {
+    await fetch('https://api.dishdrop.pp.ua/api/order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
