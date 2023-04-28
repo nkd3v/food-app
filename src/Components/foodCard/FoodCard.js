@@ -8,14 +8,6 @@ function FoodCard({ id, foodName, price, description, restaurant, category, imag
     // create counter state
     const [quantity, setCounter] = useState(0)
     let  { cartItems, increaseItemQuantity } = useShoppingCart()
-
-    useEffect(() => {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems))
-    }, [cartItems])
-
-    useEffect(() => {
-      cartItems = localStorage.getItem('cartItems')
-    }, [])
     
 
     // create handleIncrement function

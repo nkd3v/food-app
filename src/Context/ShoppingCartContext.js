@@ -7,8 +7,21 @@ export function useShoppingCart() {
 }
 
 export function ShoppingCartPorvider({ children }) {
-    const [cartItems, setCartItems] = useState([])
-    
+    const [cartItems, setCartItems] = useState(() => {
+        try {
+            const storedCartItems = localStorage.getItem('cartItems');
+            return storedCartItems ? JSON.parse(storedCartItems) : [];
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    })
+
+
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems))
+        console.log(cartItems, JSON.stringify(cartItems))
+    }, [cartItems])
 
     function getItemQuantity(menu) {
         return cartItems.find(item => item.menu.id === menu.id)?.quantity || 0

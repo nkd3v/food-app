@@ -5,7 +5,7 @@ import "./ShoppingCart.css"
 const ShoppingCart = () => {
   let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     const mockUser = {
       "id": "ffffffffffffffffffffffff",
       "username": "string",
@@ -25,7 +25,7 @@ const ShoppingCart = () => {
       status: 0
     }
 
-    const res = fetch('https://api.dishdrop.pp.ua/api/order', {
+    const res = await fetch('https://api.dishdrop.pp.ua/api/menu', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
