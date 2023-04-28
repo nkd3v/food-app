@@ -12,9 +12,6 @@ export function Navbar() {
                     <Nav.Link to="/shop" as={NavLink}>
                         Shop
                     </Nav.Link>
-                    <Nav.Link to="/menu" as={NavLink}>
-                        Menu
-                    </Nav.Link>
                     <Nav.Link to="/about" as={NavLink}>
                         About
                     </Nav.Link>

@@ -1,14 +1,22 @@
 import './ShopCard.css'
 import logo from "../../Image/McDonalds-logo.png"
+import { Link } from 'react-router-dom'
 
-function ShopCard() {
-
+function ShopCard(props) {
     return (
-        <div className='shopCard_container_component'>
-            <img src={logo} alt='ShopName'width="200px"/>
-            <h4>Shop Name</h4>
-            <p>@KMITL</p>       
-        </div>
+        <Link
+            to={`/menu/${props.id}`}
+            style={{
+                textDecoration: 'none', // remove the underline
+                color: 'black' // change the color to black
+            }}
+        >
+            <div className='shopCard_container_component'>
+                <img src={logo} alt='ShopName' width="200px" />
+                <h4>{props.name}</h4>
+                <p>@KMITL</p>
+            </div>
+        </Link>
     )
 }
 

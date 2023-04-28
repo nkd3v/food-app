@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import FoodCard from '../../../Components/foodCard/FoodCard';
-import './Menu.css' ;
+import './Menu.css';
+import { useParams } from 'react-router-dom';
+import { SHA256 } from 'crypto-js';
 
 const Menu = () => {
   const [foodList, setFoodList] = useState([]);
+  const { id } = useParams()
 
   useEffect(() => {
     const fetchFoodData = async () => {
@@ -19,17 +22,23 @@ const Menu = () => {
     fetchFoodData();
   }, []);
 
-
   return (
     <>
-      <h1>Menu</h1>
-      <div className = "foodCard_container">
+      <h1>Menu</h1>{foodList.length > 0 ? (
+        <div className="foodCard_container">
           {foodList.map((food) => (
-            <FoodCard key={food.id} {...food} />
+            SHA256(food.restaurant).toString() === id ? (
+              <FoodCard key={food.id} {...food} />
+            ) : (
+              null
+            )
           ))}
-      </div>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
-  )
-};
+  );
+}
 
 export default Menu;

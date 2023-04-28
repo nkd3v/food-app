@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import './FoodCard.css'
 import { useShoppingCart } from '../../Context/ShoppingCartContext'
@@ -7,7 +7,7 @@ function FoodCard({ id, foodName, price, description, restaurant, category, imag
     const item = { id, foodName, price, description, restaurant, category, image }
     // create counter state
     const [quantity, setCounter] = useState(0)
-    let  { cartItems, increaseItemQuantity } = useShoppingCart()
+    let  { increaseItemQuantity } = useShoppingCart()
     
 
     // create handleIncrement function
