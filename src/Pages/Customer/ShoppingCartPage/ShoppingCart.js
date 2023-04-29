@@ -1,14 +1,16 @@
 import { Button } from "react-bootstrap";
 import Cart from "../../../Components/ShoppingCart/Cart";
-import "./ShoppingCart.css"
+import "./ShoppingCart.css";
 import { v4 } from "uuid";
 import AddressBox from "./AddressBox";
 import { useNavigate } from 'react-router-dom';
 
 const ShoppingCart = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
+  let cartItems = localStorage.getItem("cartItems")
+    ? JSON.parse(localStorage.getItem("cartItems"))
+    : [];
 
     const mockUser = {
         "id": "ffffffffffffffffffffffff",
@@ -22,12 +24,12 @@ const ShoppingCart = () => {
         "lastName": "Doi"
     };
 
-    const order = {
-        user: mockUser,
-        orderItems: cartItems,
-        detail: "string",
-        status: 0
-    }
+  const order = {
+    user: mockUser,
+    orderItems: cartItems,
+    detail: "string",
+    status: 0,
+  };
 
     const handleCheckout = async () => {
 
@@ -51,28 +53,28 @@ const ShoppingCart = () => {
             });
     }
 
-    return (
-        <>
-            <div className="shopName_container">
-                Shop
+  return (
+    <div className="shopping_cart_body">
+      <div className="shopping_cart_container">
+        {cartItems.length > 0 ? (
+          <>
+            <div>
+              <Cart key={v4()} {...order} />
             </div>
-            {cartItems.length > 0 ? (
-                <>
-                    <div>
-                        <Cart key={v4()} {...order} />
-                    </div>
-                    <AddressBox />
-                    <Button onClick={handleCheckout}>
-                        Checkout
-                    </Button>
-                </>
-            ) : (
-                <>
-                    <p>Your cart is empty 🛒</p>
-                </>
-            )}
-        </>
-    )
+            <AddressBox />
+            {/* เอา payment ออก เพราะรีบ */}
+            <Button onClick={handleCheckout}
+            style={{ width: "10rem", height: "2.5rem" }}
+            >Checkout</Button>
+          </>
+        ) : (
+          <>
+            <p>Your cart is empty 🛒</p>
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default ShoppingCart;
