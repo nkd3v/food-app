@@ -12,17 +12,17 @@ const ShoppingCart = () => {
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [];
 
-    const mockUser = {
-        "id": "ffffffffffffffffffffffff",
-        "username": "john",
-        "email": "john@dishdrop.pp.ua",
-        "phoneNumber": "0123456789",
-        "role": "customer",
-        "address": "ตึก ECC ห้อง 1234",
-        "coordinate": "string",
-        "firstName": "John",
-        "lastName": "Doi"
-    };
+  const mockUser = {
+    "id": "ffffffffffffffffffffffff",
+    "username": "john",
+    "email": "john@dishdrop.pp.ua",
+    "phoneNumber": "0123456789",
+    "role": "customer",
+    "address": "ตึก ECC ห้อง 1234",
+    "coordinate": "string",
+    "firstName": "John",
+    "lastName": "Doi"
+  };
 
   const order = {
     user: mockUser,
@@ -31,27 +31,27 @@ const ShoppingCart = () => {
     status: 0,
   };
 
-    const handleCheckout = async () => {
+  const handleCheckout = async () => {
 
-        await fetch('https://api.dishdrop.pp.ua/api/order', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(order),
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            }).then(data => {
-                navigate(`/tracking/${data.id}`)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
+    await fetch('https://api.dishdrop.pp.ua/api/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(order),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      }).then(data => {
+        navigate(`/tracking/${data.id}`)
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
 
   return (
     <div className="shopping_cart_body">
@@ -64,7 +64,7 @@ const ShoppingCart = () => {
             <AddressBox />
             {/* เอา payment ออก เพราะรีบ */}
             <Button onClick={handleCheckout}
-            style={{ width: "10rem", height: "2.5rem" }}
+              style={{ width: "10rem", height: "2.5rem" }}
             >Checkout</Button>
           </>
         ) : (
