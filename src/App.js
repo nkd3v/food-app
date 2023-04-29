@@ -22,6 +22,11 @@ import { ShoppingCartPorvider } from './Context/ShoppingCartContext'
 import RegisterCustomer from './Pages/Customer/Register/RegisterCustomer'
 import RegisterMerchant from './Pages/Merchant/Register/RegisterMerchant'
 import RegisterRider from './Pages/Rider/Register/RegisterRider'
+import Signup from './Pages/Shared/Signup'
+import OrderList from './Pages/Customer/OrderList/OrderList'
+import TakenOrder from './Pages/Rider/TakenOrderPage/TakenOrder'
+import UpdateOrderStatus from './Pages/Rider/UpdateOrderStatusPage/UpdateOrderStatus'
+import Login from './Pages/Shared/Login'
 
 function App() {
   return (
@@ -36,17 +41,25 @@ function App() {
             <Route path="customerList" element={<CustomerList />} />
             <Route path="takeOrder/:id" element={<TakeOrder />} />
             <Route path="finishRider" element={<FinishRider />} />
+            <Route path="takenOrder" element={<TakenOrder />} />
+            <Route path="updateOrderStatus/:id" element={<UpdateOrderStatus />} />
 
             <Route path="shop" element={<Shop />} />
             <Route path="menu/:id" element={<Menu />} />
             <Route path="shoppingCart" element={<ShoppingCart />} />
             <Route path="payment" element={<Payment />} />
-            <Route path="tracking" element={<Tracking />} />
+            <Route path="tracking/:id" element={<Tracking />} />
             <Route path="userRating" element={<UserRating />} />
+            <Route path="orderList" element={<OrderList />} />
 
-            <Route path="register/customer" element={<RegisterCustomer />} />
-            <Route path="register/merchant" element={<RegisterMerchant />} />
-            <Route path="register/rider" element={<RegisterRider />} />
+            <Route path="customer/signup" element={<RegisterCustomer />} />
+            <Route path="merchant/signup" element={<RegisterMerchant />} />
+            <Route path="rider/signup" element={<RegisterRider />} />
+
+            <Route path="signup" element={<Signup />} />
+            <Route path="login" element={<Login />} />
+
+            <Route path="*" element={<h1>Not Found</h1>} />
 
           </Routes>
         </div>

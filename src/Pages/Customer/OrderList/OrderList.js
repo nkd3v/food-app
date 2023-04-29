@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import CustomerData from '../../../Components/customerdata/CustomerData'
-import './CustomerList.css'
+import OrderData from './OrderData'
+import './OrderList.css'
 
-const CustomerList = () => {
+const OrderList = () => {
     const [orderData, setOrderData] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('https://api.dishdrop.pp.ua/api/order/unassigned', { credentials: 'include' });
+                const response = await fetch('https://api.dishdrop.pp.ua/api/order');
                 const data = await response.json();
                 setOrderData(data);
             } catch (error) {
@@ -22,7 +22,7 @@ const CustomerList = () => {
     return (
         orderData.length > 0 ? (
             <div>
-                <h1>Customer List</h1>
+                <h1>Order List</h1>
                 <div className='list_container'>
                     <div className="col-sm-2 col-md-2 col-lg-2 border">
                         <h4>No.</h4>
@@ -39,7 +39,7 @@ const CustomerList = () => {
 
                     {orderData.map(
                         (order, index) => (
-                            <CustomerData key={index} id={index + 1} order={order} />
+                            <OrderData key={index} id={index} order={order} />
                         )
                     )}
                 </div>
@@ -48,4 +48,4 @@ const CustomerList = () => {
     )
 };
 
-export default CustomerList;
+export default OrderList;

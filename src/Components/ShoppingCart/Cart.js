@@ -11,7 +11,6 @@ function Cart(order){
                     item => <li key={v4()}>{item.quantity}x {item.menu.foodName}</li>
                 )}
             </ul>
-            <p>จุดส่งอาหาร: {order.user.address}</p>
             <p>การชำระเงิน: {order.id}</p>
             <p>สถานะ: {order.status}</p>
         </>

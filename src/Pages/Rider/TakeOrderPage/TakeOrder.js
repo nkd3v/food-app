@@ -29,10 +29,31 @@ const TakeOrder = () => {
         }
     }, [orderData, id])
 
+    const handleTakeOrder = async () => {
+        const rider = JSON.parse(localStorage.getItem('user'))
+        const riderId = rider.uid
+        console.log(riderId)
+
+        try {
+            const response = await fetch(`https://api.dishdrop.pp.ua/api/order/assign/${id}`, {
+                method: 'PATCH',
+                body: JSON.stringify(riderId),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+            });
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return order?.id ? (
         <>
             <Order key={uuidv4()} {...order} />
-            <Button key={uuidv4()}>Take Order</Button>
+            <Button key={uuidv4()} onClick={handleTakeOrder}>Take Order</Button>
         </>
     ) : <p>Loading...</p>
 };
