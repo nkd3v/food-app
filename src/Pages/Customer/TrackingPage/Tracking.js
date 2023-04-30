@@ -30,7 +30,7 @@ export default function Tracking() {
 
   useEffect(() => {
     if (orderData.length > 0) {
-      setOrder(orderData[0])
+      setOrder(orderData.find(item => item.id === id))
     }
   }, [orderData, id])
 
@@ -43,7 +43,7 @@ export default function Tracking() {
       <>
         <Order key={uuidv4()} {...order} />
       </>
-      ) : <p>Loading...</p>}
+      ) : <p>   </p>}
     </>
   );
 }

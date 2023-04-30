@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import CustomerData from '../../../Components/customerdata/CustomerData'
 import './CustomerList.css'
+import CustomerDataTable from '../../../Components/customerdata/CustomerDataTable';
 
 const CustomerList = () => {
     const [orderData, setOrderData] = useState([]);
@@ -20,31 +20,12 @@ const CustomerList = () => {
     }, []);
 
     return (
-        orderData.length > 0 ? (
-            <div>
-                <h1>Customer List</h1>
-                <div className='list_container'>
-                    <div className="col-sm-2 col-md-2 col-lg-2 border">
-                        <h4>No.</h4>
-                    </div>
-                    <div className="col-sm-4 col-md-4 col-lg-4 border">
-                        <h4>Restaurant</h4>
-                    </div>
-                    <div className="col-sm-4 col-md-4 col-lg-4 border">
-                        <h4>Destination</h4>
-                    </div>
-                    <div className="col-sm-2 col-md-2 col-lg-2 border">
-                        <h4>Description</h4>
-                    </div>
-
-                    {orderData.map(
-                        (order, index) => (
-                            <CustomerData key={index} id={index + 1} order={order} />
-                        )
-                    )}
-                </div>
-            </div>
-        ) : <p>Loading...</p>
+        <>
+        <h1>Orders List</h1>
+            {orderData.length > 0 ? (
+                <CustomerDataTable orders={orderData} descriptionUrl={'takeorder'} />
+            ) : <p>   </p>}
+        </>
     )
 };
 

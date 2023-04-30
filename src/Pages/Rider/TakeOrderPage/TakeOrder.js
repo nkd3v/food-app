@@ -3,11 +3,13 @@ import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import Order from "../../../Components/Order/Order";
+import { useAuthContext } from "../../../Hooks/useAuthContext";
 
 const TakeOrder = () => {
     const [orderData, setOrderData] = useState([]);
     const [order, setOrder] = useState({});
     const { id } = useParams()
+    const { user } = useAuthContext()
 
     useEffect(() => {
         async function fetchData() {
@@ -30,14 +32,12 @@ const TakeOrder = () => {
     }, [orderData, id])
 
     const handleTakeOrder = async () => {
-        const rider = JSON.parse(localStorage.getItem('user'))
-        const riderId = rider.uid
-        console.log(riderId)
+        console.log(user)
 
         try {
             const response = await fetch(`https://api.dishdrop.pp.ua/api/order/assign/${id}`, {
                 method: 'PATCH',
-                body: JSON.stringify(riderId),
+                body: JSON.stringify(user.uid),
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -55,7 +55,7 @@ const TakeOrder = () => {
             <Order key={uuidv4()} {...order} />
             <Button key={uuidv4()} onClick={handleTakeOrder}>Take Order</Button>
         </>
-    ) : <p>Loading...</p>
+    ) : <p>   </p>
 };
 
 export default TakeOrder;

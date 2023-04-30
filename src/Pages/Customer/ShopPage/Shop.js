@@ -43,7 +43,7 @@ const Shop = () => {
                 {shopList.length > 0 ? shopList.map(shop => (
                     <ShopCard key={SHA256(shop).toString()} id={SHA256(shop).toString()} name={shop} />
                 )) : (
-                    <p>Loading...</p>
+                    <p>   </p>
                 )}
             </div>
         </div>

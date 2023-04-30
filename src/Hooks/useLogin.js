@@ -17,24 +17,19 @@ export const useLogin = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }),
             credentials: 'include',
-          });
-        const data = await response.text()
+        });
+        const token = await response.text()
 
-        if (!response.ok || data === 'User not found' || data === 'Invalid password') {
+        if (!response.ok || token === 'User not found' || token === 'Invalid password') {
             setIsLoading(false)
-            setError(data.error)
+            setError(token.error)
         }
 
         if (response.ok) {
-            const decodedToken = jwtBeautify(jwtDecode(data));
-            let expirationDate = new Date();
-            expirationDate.setTime(expirationDate.getTime() + (6 * 60 * 60 * 1000))
-            localStorage.setItem('user', JSON.stringify(decodedToken))
-            document.cookie = `access_token=${data};SameSite=None;Secure;"`
-            
-            dispatch({type: 'LOGIN', payload: data})
+            const user = jwtBeautify(jwtDecode(token));
+            dispatch({ type: 'LOGIN', payload: { isAuthenticated: true, user, token } })
             setIsLoading(false)
         }
     }
-    return {login, isLoading, error}
+    return { login, isLoading, error }
 }

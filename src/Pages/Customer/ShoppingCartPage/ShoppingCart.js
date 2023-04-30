@@ -4,28 +4,18 @@ import "./ShoppingCart.css";
 import { v4 } from "uuid";
 import AddressBox from "./AddressBox";
 import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from "../../../Hooks/useAuthContext";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
+  const { user } = useAuthContext()
 
   let cartItems = localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [];
 
-  const mockUser = {
-    "id": "ffffffffffffffffffffffff",
-    "username": "john",
-    "email": "john@dishdrop.pp.ua",
-    "phoneNumber": "0123456789",
-    "role": "customer",
-    "address": "ตึก ECC ห้อง 1234",
-    "coordinate": "string",
-    "firstName": "John",
-    "lastName": "Doi"
-  };
-
   const order = {
-    user: mockUser,
+    user: user,
     orderItems: cartItems,
     detail: "string",
     status: 0,

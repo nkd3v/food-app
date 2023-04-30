@@ -1,5 +1,6 @@
 import React from 'react'
 import { v4 } from 'uuid'
+import OrderStatus from '../../Utilities/OrderStatus'
 
 function Order(order) {
     return (
@@ -15,7 +16,7 @@ function Order(order) {
             </ul>
             <p>จุดส่งอาหาร: {order.user.address}</p>
             <p>การชำระเงิน: {order.id}</p>
-            <p>สถานะ: {order.status}</p>
+            <p>สถานะ: {OrderStatus(order.status)}</p>
         </>
     )
 }

@@ -35,7 +35,7 @@ const Menu = () => {
           ))}
         </div>
       ) : (
-        <p>Loading...</p>
+        <p>   </p>
       )}
     </>
   );
