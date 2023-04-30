@@ -1,19 +1,21 @@
-import "./Home.css"
 import riderImage from "../../Image/rider.png"
 import customerImage from "../../Image/customer.png"
 import { useLogin } from "../../Hooks/useLogin";
+import { useNavigate } from "react-router-dom";
+import "./Home.css"
 
 const Home = () => {
     const { login } = useLogin()
+    const navigator = useNavigate()
 
     const handleRider = async () => {
         await login('rider', 'rider')
-        window.location.href = '/CustomerList'
+        navigator('/CustomerList')
     }
 
     const handleCustomer = async () => {
         await login('customer', 'customer')
-        window.location.href = '/Shop'
+        navigator('/Shop')
     }
 
     return (

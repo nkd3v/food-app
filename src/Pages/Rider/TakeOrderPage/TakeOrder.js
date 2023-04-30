@@ -37,7 +37,7 @@ const TakeOrder = () => {
         try {
             const response = await fetch(`https://api.dishdrop.pp.ua/api/order/assign/${id}`, {
                 method: 'PATCH',
-                body: JSON.stringify(user.uid),
+                body: JSON.stringify(user.id),
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -53,9 +53,9 @@ const TakeOrder = () => {
     return order?.id ? (
         <>
             <Order key={uuidv4()} {...order} />
-            <Button key={uuidv4()} onClick={handleTakeOrder}>Take Order</Button>
+            <Button className='ml-auto' key={uuidv4()} onClick={handleTakeOrder}>Take Order</Button>
         </>
-    ) : <p>   </p>
+    ) : <p>Loading...</p>
 };
 
 export default TakeOrder;

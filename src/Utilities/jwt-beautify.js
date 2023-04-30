@@ -8,7 +8,7 @@ export default function jwtBeautify(claims) {
       expirationTime: claims.exp,
       issuer: claims.iss,
       audience: claims.aud,
-      uid: claims.id,
+      id: claims.id,
     };
   
     return readableClaims;

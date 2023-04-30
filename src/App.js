@@ -1,7 +1,3 @@
-import { Routes, Route } from 'react-router-dom'
-import { Container } from 'react-bootstrap'
-import { Navbar } from "./Components/Navbar/Navbar"
-
 import Home from "./Pages/HomePage/Home"
 import AboutUs from "./Pages/AboutUs/AboutUs"
 
@@ -27,6 +23,11 @@ import OrderList from './Pages/Customer/OrderList/OrderList'
 import TakenOrder from './Pages/Rider/TakenOrderPage/TakenOrder'
 import UpdateOrderStatus from './Pages/Rider/UpdateOrderStatusPage/UpdateOrderStatus'
 import Login from './Pages/Shared/Login'
+
+import { Routes, Route } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
+import { Navbar } from "./Components/Navbar/Navbar"
+
 
 function App() {
   return (

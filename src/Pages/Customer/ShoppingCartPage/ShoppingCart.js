@@ -5,14 +5,13 @@ import { v4 } from "uuid";
 import AddressBox from "./AddressBox";
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from "../../../Hooks/useAuthContext";
+import { useShoppingCart } from "../../../Context/ShoppingCartContext";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext()
-
-  let cartItems = localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : [];
+  
+  const { cartItems, clearCart } = useShoppingCart()
 
   const order = {
     user: user,
@@ -41,6 +40,8 @@ const ShoppingCart = () => {
       .catch(error => {
         console.error('Error:', error);
       });
+
+      clearCart()
   }
 
   return (

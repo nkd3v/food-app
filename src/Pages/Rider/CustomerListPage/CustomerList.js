@@ -24,7 +24,7 @@ const CustomerList = () => {
         <h1>Orders List</h1>
             {orderData.length > 0 ? (
                 <CustomerDataTable orders={orderData} descriptionUrl={'takeorder'} />
-            ) : <p>   </p>}
+            ) : <p>Loading...</p>}
         </>
     )
 };

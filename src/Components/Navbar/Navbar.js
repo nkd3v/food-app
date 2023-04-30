@@ -1,7 +1,9 @@
-import { Navbar as NavbarBs, Nav, Container, Button } from "react-bootstrap"
+import { Navbar as NavbarBs, Nav, Container, Button, Image } from "react-bootstrap"
 import { NavLink } from "react-router-dom"
 import { useLogout } from "../../Hooks/useLogout"
 import { useAuthContext } from "../../Hooks/useAuthContext"
+import './Navbar.css'
+import logo from '../../Image/logo.png'
 
 export function Navbar() {
     const { logout } = useLogout()
@@ -14,19 +16,22 @@ export function Navbar() {
     return (
         <NavbarBs sticky="top" className="bg-white shadow-sm mb-3">
             <Container>
+                <Image src={logo} alt="logo" className="logo"/>
                 <Nav className="me-auto">
-                    <Nav.Link to={user === null ? '/' : user.role === 'Customer' ? 'shop' : 'customerlist'} as={NavLink}>
-                        Home
-                    </Nav.Link>
+                    {user === null && (
+                        <Nav.Link to={'/'} as={NavLink}>
+                            Home
+                        </Nav.Link>
+                    )}
 
                     {user?.role === 'Rider' && (
                         <>
-                        <Nav.Link to="/customerlist" as={NavLink}>
-                            Orders List
-                        </Nav.Link>
-                        <Nav.Link to="/takenorder" as={NavLink}>
-                            My Orders
-                        </Nav.Link>
+                            <Nav.Link to="/customerlist" as={NavLink}>
+                                Orders List
+                            </Nav.Link>
+                            <Nav.Link to="/takenorder" as={NavLink}>
+                                My Orders
+                            </Nav.Link>
                         </>
                     )}
 
@@ -63,9 +68,9 @@ export function Navbar() {
 
                 {user !== null && (
                     <>
-                    <div className="d-flex">
-                        <Button onClick={handleLogout}>Sign out</Button>
-                    </div>
+                        <div className="d-flex">
+                            <Button onClick={handleLogout} style={{margin: "0px 0px 0px 10px"}}>Sign out</Button>
+                        </div>
                     </>
                 )}
             </Container>

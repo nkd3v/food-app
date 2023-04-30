@@ -64,7 +64,11 @@ export function ShoppingCartPorvider({ children }) {
         })
     }
 
-    return <ShoppingCartContext.Provider value={{ cartItems, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeFromCart }}>
+    function clearCart() {
+        setCartItems([])
+    }
+
+    return <ShoppingCartContext.Provider value={{ cartItems, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeFromCart, clearCart }}>
         {children}
     </ShoppingCartContext.Provider>
 }

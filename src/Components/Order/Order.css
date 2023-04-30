@@ -1,0 +1,13 @@
+
+
+.order-box{
+    background: #fff;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+    color: #333;
+    list-style-type: none;
+    border-radius: 10px;
+    padding: 30px 30px;
+    margin: 40px 0px 20px 0px;
+    position: relative;
+    z-index: 10;
+  }

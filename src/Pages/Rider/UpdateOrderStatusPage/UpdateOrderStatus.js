@@ -49,7 +49,7 @@ const UpdateOrderStatus = () => {
             <Button value={50} onClick={handleUpdateStatus} disabled={order.status >= 50}>Out for delivery</Button>
             <Button value={100} onClick={handleUpdateStatus} disabled={order.status === 100}>Finish delivery</Button>
         </>
-    ) : <p>   </p>
+    ) : <p>Loading...</p>
 };
 
 export default UpdateOrderStatus;

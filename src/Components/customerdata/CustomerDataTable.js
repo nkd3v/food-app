@@ -14,7 +14,7 @@ const CustomerDataTable = ({ orders, descriptionUrl }) => {
                 </tr>
             </thead>
             <tbody>
-                {orders.map((order, index) => <CustomerData key={index} order={order} descriptionUrl={descriptionUrl} />)}
+                {[...orders].reverse().map((order, index) => <CustomerData key={index} order={order} descriptionUrl={descriptionUrl} />)}
             </tbody>
         </Table>
     )

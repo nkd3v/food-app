@@ -10,7 +10,7 @@ const TakenOrder = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch(`https://api.dishdrop.pp.ua/api/order/rider/${user.uid}`);
+                const response = await fetch(`https://api.dishdrop.pp.ua/api/order/rider/${user.id}`);
                 const data = await response.json();
                 setOrderData(data);
             } catch (error) {
@@ -19,14 +19,14 @@ const TakenOrder = () => {
         }
 
         fetchData();
-    }, []);
+    }, [user.id]);
 
     return (
         <>
         <h1>My Orders</h1>
         {orderData.length > 0 ? (
             <CustomerDataTable orders={orderData} descriptionUrl={'updateorderstatus'} />
-        ) : <p>   </p>}
+        ) : <p>Loading...</p>}
         </>
     )
 };
