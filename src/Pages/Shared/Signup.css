@@ -1,0 +1,10 @@
+.signup-form-ctn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 120px);
+}
+
+#formBasicUsername, #formBasicPassword {
+    min-width: 300px;
+}

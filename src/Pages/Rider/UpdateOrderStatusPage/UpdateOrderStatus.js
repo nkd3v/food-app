@@ -46,7 +46,7 @@ const UpdateOrderStatus = () => {
     return order?.id ? (
         <>
             <Order key={uuidv4()} {...order} />
-            <Button value={50} onClick={handleUpdateStatus} disabled={order.status >= 50}>Out for delivery</Button>
+            <Button value={50} onClick={handleUpdateStatus} className="me-2" disabled={order.status >= 50}>Out for delivery</Button>
             <Button value={100} onClick={handleUpdateStatus} disabled={order.status === 100}>Finish delivery</Button>
         </>
     ) : <p>Loading...</p>

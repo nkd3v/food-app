@@ -33,15 +33,19 @@ const Shop = () => {
         console.log(foodList[0].restaurant)
         console.log(hash);
 
-        setShopList([...new Set(foodList.map(obj => obj.restaurant))])
+        const rtrAndCanteenMapJson = [...new Set(foodList.map(obj => {
+            return JSON.stringify({name: obj.restaurant, canteen: obj.restaurantAddress})
+        }))]
+
+        setShopList(rtrAndCanteenMapJson.map(obj => JSON.parse(obj)))
     }, [foodList])
 
     return (
         <div>
-            <h1>choose a restaurant</h1>
+            <h1>Choose a restaurant</h1>
             <div className='ShopCard_container'>
                 {shopList.length > 0 ? shopList.map(shop => (
-                    <ShopCard key={SHA256(shop).toString()} id={SHA256(shop).toString()} name={shop} />
+                    <ShopCard key={SHA256(shop).toString()} id={SHA256(shop.name).toString()} name={shop} />
                 )) : (
                     <p>Loading...</p>
                 )}

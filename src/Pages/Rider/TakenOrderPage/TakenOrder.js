@@ -4,7 +4,7 @@ import CustomerDataTable from '../../../Components/customerdata/CustomerDataTabl
 import { useAuthContext } from '../../../Hooks/useAuthContext';
 
 const TakenOrder = () => {
-    const [orderData, setOrderData] = useState([]);
+    const [orders, setOrders] = useState(null);
     const { user } = useAuthContext()
 
     useEffect(() => {
@@ -12,7 +12,7 @@ const TakenOrder = () => {
             try {
                 const response = await fetch(`https://api.dishdrop.pp.ua/api/order/rider/${user.id}`);
                 const data = await response.json();
-                setOrderData(data);
+                setOrders(data);
             } catch (error) {
                 console.error(error);
             }
@@ -23,10 +23,12 @@ const TakenOrder = () => {
 
     return (
         <>
-        <h1>My Orders</h1>
-        {orderData.length > 0 ? (
-            <CustomerDataTable orders={orderData} descriptionUrl={'updateorderstatus'} />
-        ) : <p>Loading...</p>}
+            <h1>Orders List</h1>
+            {orders === null && <p>Loading...</p>}
+            {orders?.length === 0 && <p>No orders found.</p>}
+            {orders?.length > 0 && (
+                <CustomerDataTable orders={orders} descriptionUrl={'updateorderstatus'} />
+            )}
         </>
     )
 };

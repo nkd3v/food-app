@@ -1,34 +1,35 @@
 import { useState } from "react"
 import { useAuthContext } from "./useAuthContext"
+import jwtBeautify from "../Utilities/jwt-beautify"
+import jwtDecode from "jwt-decode"
 
 export const useSignup = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
 
-    const signup = async (email, password) => {
+    const signup = async (username, password, role) => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('https://api.dishdrop.pp.ua/api/auth/signup', {
+        const response = await fetch('https://api.dishdrop.pp.ua/api/signup', {
             method: 'POST',
-            headers: { 'Context-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        })
-        const json = await response.json()
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password, role }),
+            credentials: 'include',
+        });
+        const token = await response.text()
 
         if (!response.ok) {
             setIsLoading(false)
-            setError(json.error)
+            setError(token)
         }
 
         if (response.ok) {
-            localStorage.setItem('user', JSON.stringify(json))
-            
-            dispatch({type: 'LOGIN', payload: json})
-
+            const user = jwtBeautify(jwtDecode(token));
+            dispatch({ type: 'LOGIN', payload: { isAuthenticated: true, user, token } })
             setIsLoading(false)
         }
     }
-    return {signup, isLoading, error}
+    return { signup, isLoading, error }
 }

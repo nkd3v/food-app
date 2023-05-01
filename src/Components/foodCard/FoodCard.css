@@ -1,10 +1,12 @@
-.foodCard_container_component{
+.foodCard_container_component {
     width: 40%;
 }
-.descript_container{
+
+.descript_container {
     margin-left: 1.5rem;
 }
-.button_amount_foodCard{
+
+.button_amount_foodCard {
     border-radius: 25px;
     background: #aaaba9;
     width: 25px;
@@ -17,17 +19,23 @@
 
 }
 
-.counter_foodCard{
+.counter_foodCard {
     /* margin: '0px 8px'; */
     border: solid #aaaba9 1px;
     min-width: 20px;
     text-align: center;
 }
 
-.button_addToCard{
+.button_addToCard {
     background-color: #2FBF57;
     border-radius: 5px;
     border-color: transparent;
-    padding: 5px 15px ;
+    padding: 5px 15px;
     color: white;
+}
+
+.food-img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
 }

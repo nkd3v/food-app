@@ -13,8 +13,8 @@ function ShopCard(props) {
         >
             <div className='shopCard_container_component'>
                 <img src={logo} alt='ShopName' width="200px" />
-                <h4>{props.name}</h4>
-                <p>@KMITL</p>
+                <h4>{props.name.name}</h4>
+                <p>@{props.name.canteen}</p>
             </div>
         </Link>
     )

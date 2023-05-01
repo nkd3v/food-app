@@ -3,14 +3,14 @@ import './CustomerList.css'
 import CustomerDataTable from '../../../Components/customerdata/CustomerDataTable';
 
 const CustomerList = () => {
-    const [orderData, setOrderData] = useState([]);
+    const [orders, setOrders] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await fetch('https://api.dishdrop.pp.ua/api/order/unassigned', { credentials: 'include' });
                 const data = await response.json();
-                setOrderData(data);
+                setOrders(data);
             } catch (error) {
                 console.error(error);
             }
@@ -21,10 +21,12 @@ const CustomerList = () => {
 
     return (
         <>
-        <h1>Orders List</h1>
-            {orderData.length > 0 ? (
-                <CustomerDataTable orders={orderData} descriptionUrl={'takeorder'} />
-            ) : <p>Loading...</p>}
+            <h1>Orders List</h1>
+            {orders === null && <p>Loading...</p>}
+            {orders?.length === 0 && <p>No orders found.</p>}
+            {orders?.length > 0 && (
+                <CustomerDataTable orders={orders} descriptionUrl={'takeorder'} />
+            )}
         </>
     )
 };

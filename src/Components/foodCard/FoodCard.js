@@ -22,7 +22,7 @@ function FoodCard({ id, foodName, price, description, restaurant, category, imag
     return (
         <div className='p-4 m-4 d-flex justify-content-center rounded shadow foodCard_container_component'>
             <div className=''>
-                <img src={image} alt={foodName} width="200px"/>
+                <img className='food-img' src={image} alt={foodName}/>
                 <div className='d-flex justify-content-center mt-2'>
                      < button onClick={handleDecrease} className='button_amount_foodCard'>-</button>
                      <span className='counter_foodCard'>{quantity}</span>

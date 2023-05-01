@@ -3,7 +3,7 @@ import "./Cart.css"
 
 function Cart(order){
     return (
-        <>
+        <div className="cartbox">
             <p>ร้านอาหาร: {order.orderItems[0].menu.restaurant}</p>
             <p>รายการอาหาร:</p>
             <ul>
@@ -12,7 +12,7 @@ function Cart(order){
                 )}
             </ul>
             <p>การชำระเงิน: ชำระเงินปลายทาง</p>
-        </>
+        </div>
     )
 }
 export default Cart;

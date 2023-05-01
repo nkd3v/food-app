@@ -20,9 +20,9 @@ export const useLogin = () => {
         });
         const token = await response.text()
 
-        if (!response.ok || token === 'User not found' || token === 'Invalid password') {
+        if (!response.ok) {
             setIsLoading(false)
-            setError(token.error)
+            setError(token)
         }
 
         if (response.ok) {

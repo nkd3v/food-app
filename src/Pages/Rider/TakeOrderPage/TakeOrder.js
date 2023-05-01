@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import Order from "../../../Components/Order/Order";
 import { useAuthContext } from "../../../Hooks/useAuthContext";
@@ -10,6 +10,7 @@ const TakeOrder = () => {
     const [order, setOrder] = useState({});
     const { id } = useParams()
     const { user } = useAuthContext()
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function fetchData() {
@@ -48,6 +49,8 @@ const TakeOrder = () => {
         } catch (error) {
             console.error(error);
         }
+        
+        navigate(`/updateorderstatus/${id}`)
     }
 
     return order?.id ? (

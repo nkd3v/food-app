@@ -4,19 +4,22 @@ import { useLogout } from "../../Hooks/useLogout"
 import { useAuthContext } from "../../Hooks/useAuthContext"
 import './Navbar.css'
 import logo from '../../Image/logo.png'
+import { useShoppingCart } from "../../Context/ShoppingCartContext"
 
 export function Navbar() {
     const { logout } = useLogout()
     const { user } = useAuthContext()
+    const { clearCart } = useShoppingCart()
 
     const handleLogout = () => {
+        clearCart()
         logout()
     }
 
     return (
         <NavbarBs sticky="top" className="bg-white shadow-sm mb-3">
             <Container>
-                <Image src={logo} alt="logo" className="logo"/>
+                <Image src={logo} alt="logo" className="logo" />
                 <Nav className="me-auto">
                     {user === null && (
                         <Nav.Link to={'/'} as={NavLink}>
@@ -69,7 +72,7 @@ export function Navbar() {
                 {user !== null && (
                     <>
                         <div className="d-flex">
-                            <Button onClick={handleLogout} style={{margin: "0px 0px 0px 10px"}}>Sign out</Button>
+                            <Button onClick={handleLogout} style={{ margin: "0px 0px 0px 10px" }}>Sign out</Button>
                         </div>
                     </>
                 )}

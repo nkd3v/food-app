@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import Cart from "../../../Components/ShoppingCart/Cart";
 import "./ShoppingCart.css";
 import { v4 } from "uuid";
@@ -10,13 +10,12 @@ import { useShoppingCart } from "../../../Context/ShoppingCartContext";
 const ShoppingCart = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext()
-  
+
   const { cartItems, clearCart } = useShoppingCart()
 
   const order = {
     user: user,
     orderItems: cartItems,
-    detail: "string",
     status: 0,
   };
 
@@ -41,7 +40,7 @@ const ShoppingCart = () => {
         console.error('Error:', error);
       });
 
-      clearCart()
+    clearCart()
   }
 
   return (
@@ -52,7 +51,20 @@ const ShoppingCart = () => {
             <div>
               <Cart key={v4()} {...order} />
             </div>
-            <AddressBox />
+            <Form>
+              <Form.Group className="mb-3">
+                <Form.Label>ชื่อผู้รับ</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>เบอร์ติดต่อ</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>จุดส่งอาหาร</Form.Label>
+                <Form.Control as="textarea" rows={3} />
+              </Form.Group>
+            </Form>
             {/* เอา payment ออก เพราะรีบ */}
             <Button onClick={handleCheckout}
               style={{ width: "10rem", height: "2.5rem" }}
