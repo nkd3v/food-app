@@ -26,13 +26,13 @@ import Login from './Pages/Shared/Login'
 
 import { Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
-import { Navbar } from "./Components/Navbar/Navbar"
+import { NavbarComponent } from "./Components/Navbar/Navbar"
 
 
 function App() {
   return (
     <ShoppingCartPorvider>
-      <Navbar />
+      <NavbarComponent />
       <Container>
         <div>
           <Routes>
