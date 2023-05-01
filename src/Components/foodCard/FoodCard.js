@@ -20,7 +20,7 @@ function FoodCard({ id, foodName, price, description, restaurant, category, imag
     }
 
     return (
-        <div className='p-4 m-4 d-flex justify-content-center rounded shadow foodCard_container_component'>
+        <div className='foodCard_container_component'>
             <div className=''>
                 <img className='food-img' src={image} alt={foodName}/>
                 <div className='d-flex justify-content-center mt-2'>

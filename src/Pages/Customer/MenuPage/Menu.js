@@ -25,14 +25,16 @@ const Menu = () => {
   return (
     <>
       <h1>Menu</h1>{foodList.length > 0 ? (
-        <div className="foodCard_container">
-          {foodList.map((food) => (
-            SHA256(food.restaurant).toString() === id ? (
-              <FoodCard key={food.id} {...food} />
-            ) : (
-              null
-            )
-          ))}
+        <div className='menu_container'>
+          <div className="foodCard_container">
+            {foodList.map((food) => (
+              SHA256(food.restaurant).toString() === id ? (
+                <FoodCard key={food.id} {...food} />
+              ) : (
+                null
+              )
+            ))}
+          </div>
         </div>
       ) : (
         <p>Loading...</p>

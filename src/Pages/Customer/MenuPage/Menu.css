@@ -1,5 +1,6 @@
 .foodCard_container{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding: 1rem 4rem;
 }
