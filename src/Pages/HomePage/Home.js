@@ -2,9 +2,12 @@ import riderImage from "../../Image/rider.png"
 import customerImage from "../../Image/customer.png"
 import { useNavigate } from "react-router-dom";
 import "./Home.css"
+import { useEffect } from "react";
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
 const Home = () => {
     const navigator = useNavigate()
+    const { user } = useAuthContext()
 
     const handleRider = async () => {
         navigator('/login?role=Rider')
@@ -13,6 +16,16 @@ const Home = () => {
     const handleCustomer = async () => {
         navigator('/login?role=Customer')
     }
+
+    useEffect(() => {
+        if (user) {
+            if (user.role === 'Rider') {
+                navigator('/takenOrder')
+            } else if (user.role === 'Customer') {
+                navigator('/shop')
+            }
+        }
+    }, [user, navigator])
 
     return (
         <div className="login_container">

@@ -1,8 +1,11 @@
 .foodCard_container_component {
-    width: 40%;
+    /* width: 520px; */
+    width: 560px;
 }
 
 .descript_container {
+    flex-direction: column;
+    flex-grow: 1;
     margin-left: 1.5rem;
 }
 
@@ -32,6 +35,34 @@
     border-color: transparent;
     padding: 5px 15px;
     color: white;
+    min-width: 180px;
+}
+
+.button_addToCard:hover {
+    background-color: #2fb956;
+    border-radius: 5px;
+    border-color: transparent;
+    padding: 5px 15px;
+    color: white;
+    min-width: 180px;
+}
+
+.button_removeFromCard {
+    background-color: #ff0c0c;
+    border-radius: 5px;
+    border-color: transparent;
+    padding: 5px 15px;
+    color: white;
+    min-width: 180px;
+}
+
+.button_removeFromCard:hover {
+    background-color: #e70c0c;
+    border-radius: 5px;
+    border-color: transparent;
+    padding: 5px 15px;
+    color: white;
+    min-width: 180px;
 }
 
 .food-img {

@@ -58,6 +58,22 @@ export function ShoppingCartPorvider({ children }) {
         })
     }
 
+    function setItemQuantity(menu, quantity) {
+        setCartItems(currItems => {
+            if (currItems.find(item => item.menu.id === menu.id) === undefined) {
+                return [...currItems, { menu, quantity }]
+            } else {
+                return currItems.map(item => {
+                    if (item.menu.id === menu.id) {
+                        return { menu: item.menu, quantity }
+                    } else {
+                        return item
+                    }
+                })
+            }
+        })
+    }
+
     function removeFromCart(menu) {
         setCartItems(currItems => {
             return currItems.filter(item => item.menu.id !== menu.id)
@@ -68,7 +84,7 @@ export function ShoppingCartPorvider({ children }) {
         setCartItems([])
     }
 
-    return <ShoppingCartContext.Provider value={{ cartItems, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeFromCart, clearCart }}>
+    return <ShoppingCartContext.Provider value={{ cartItems, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeFromCart, setItemQuantity, clearCart }}>
         {children}
     </ShoppingCartContext.Provider>
 }

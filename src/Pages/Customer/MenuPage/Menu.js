@@ -22,21 +22,30 @@ const Menu = () => {
     fetchFoodData();
   }, []);
 
+  useEffect(() => {
+    console.log(foodList)
+  }, [foodList])
+
   return (
     <>
-      <h1>Menu</h1>{foodList.length > 0 ? (
-        <div className="foodCard_container">
-          {foodList.map((food) => (
-            SHA256(food.restaurant).toString() === id ? (
-              <FoodCard key={food.id} {...food} />
-            ) : (
-              null
-            )
-          ))}
+      <h1>{foodList?.find((food) => (SHA256(food.restaurant).toString() === id))?.restaurant}</h1>
+      <div className='foodCtn_container d-flex justify-content-center'>
+        <div className='foodList_container d-flex justify-content-center'>
+          {foodList.length > 0 ? (
+            <div className="foodCard_container d-flex">
+              {foodList.map((food) => (
+                SHA256(food.restaurant).toString() === id ? (
+                  <FoodCard key={food.id} {...food} />
+                ) : (
+                  null
+                )
+              ))}
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      </div>
     </>
   );
 }

@@ -1,8 +1,8 @@
 .shopping_cart_container{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
-    width: 50%;
+    width: 470px;
     padding: 2rem;
     margin: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

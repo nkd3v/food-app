@@ -1,5 +1,13 @@
-.foodCard_container{
-    display: flex;
-    justify-content: flex-start;
+.foodCard_container {
+    justify-content: center;
     flex-wrap: wrap;
 }
+
+.foodList_container {
+    max-width: 1216px;
+    min-width: 608px;
+}
+
+/* .foodCtn_container {
+    
+} */

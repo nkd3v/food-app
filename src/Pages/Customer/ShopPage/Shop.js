@@ -2,6 +2,7 @@ import ShopCard from '../../../Components/ShopCard/ShopCard'
 import SHA256 from 'crypto-js/sha256';
 import './Shop.css'
 import { useEffect, useState } from 'react';
+import { v4 } from 'uuid';
 
 const Shop = () => {
     const [foodList, setFoodList] = useState([]);
@@ -42,10 +43,10 @@ const Shop = () => {
 
     return (
         <div>
-            <h1>Choose a restaurant</h1>
+            <h1>เลือกร้านอาหาร</h1>
             <div className='ShopCard_container'>
                 {shopList.length > 0 ? shopList.map(shop => (
-                    <ShopCard key={SHA256(shop).toString()} id={SHA256(shop.name).toString()} name={shop} />
+                    <ShopCard key={v4()} id={SHA256(shop.name).toString()} name={shop} />
                 )) : (
                     <p>Loading...</p>
                 )}
