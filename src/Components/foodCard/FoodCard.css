@@ -1,13 +1,25 @@
-.foodCard_container_component {
-    /* width: 520px; */
-    width: 560px;
+@media only screen and (max-width: 991px) {
+
+    .descript_container {
+        flex-direction: column;
+        margin-left: 1.2rem;
+        min-width: 150px;
+    }
 }
 
-.descript_container {
-    flex-direction: column;
-    flex-grow: 1;
-    margin-left: 1.5rem;
-    width: 14rem;
+@media only screen and (min-width: 991px) {
+
+    .descript_container {
+        flex-direction: column;
+        margin-left: 1.2rem;
+        width: 320px;
+    }
+}
+
+.foodCard_container_component {
+    /* width: 520px; */
+    max-width: 560px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .button_amount_foodCard {
@@ -36,7 +48,6 @@
     border-color: transparent;
     padding: 5px 15px;
     color: white;
-    min-width: 180px;
 }
 
 .button_addToCard:hover {
@@ -45,7 +56,6 @@
     border-color: transparent;
     padding: 5px 15px;
     color: white;
-    min-width: 180px;
 }
 
 .button_removeFromCard {
@@ -54,7 +64,6 @@
     border-color: transparent;
     padding: 5px 15px;
     color: white;
-    min-width: 180px;
 }
 
 .button_removeFromCard:hover {
@@ -63,11 +72,9 @@
     border-color: transparent;
     padding: 5px 15px;
     color: white;
-    min-width: 180px;
 }
 
 .food-img {
-    object-fit: cover;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    max-width: 200px;
 }

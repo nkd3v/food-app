@@ -55,7 +55,7 @@ function FoodCard({ id, foodName, price, description, restaurant, category, imag
     }
 
     return (
-        <div className='p-4 m-4 d-flex rounded shadow-sm foodCard_container_component'>
+        <div className='p-4 m-4 d-flex rounded foodCard_container_component'>
             <div className=''>
                 <img className='food-img' src={image} alt={foodName} />
                 <div className='d-flex justify-content-center mt-2'>
@@ -72,7 +72,7 @@ function FoodCard({ id, foodName, price, description, restaurant, category, imag
                 <p>{restaurant}</p>
                 <p>{category}</p>
                 <p>{description}</p>
-                <div className='d-flex justify-content-center'>
+                <div className='d-flex justify-content-center align-content-end'>
                     {!hasItemAdded() && (
                         <ChangeRestaurantModal handleClick={handleClick} price={price} quantity={quantity} hasItemFromOtherRestaurant={hasItemFromOtherRestaurant}/>
                     )}

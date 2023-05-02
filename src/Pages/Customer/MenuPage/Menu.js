@@ -37,7 +37,7 @@ const Menu = () => {
                 SHA256(food.restaurant).toString() === id ? (
                   <FoodCard key={food.id} {...food} />
                 ) : (
-                  null
+                  null  
                 )
               ))}
             </div>
