@@ -1,5 +1,4 @@
 import './ShopCard.css'
-import logo from "../../Image/McDonalds-logo.png"
 import { Link } from 'react-router-dom'
 
 function ShopCard(props) {
@@ -13,7 +12,7 @@ function ShopCard(props) {
         >
             <div className='shopCard_container_component'>
                 {/* change image */}
-                <img src={logo} alt='ShopName' width="200px" /> 
+                <img src={`https://storage.googleapis.com/dishdrop/brands/${props.restaurant}.png`} alt='ShopName' height="150px" width="200px" className="brand-logo" /> 
                 <h4>{props.restaurant}</h4>
                 <p>@{props.canteen}</p>
             </div>
