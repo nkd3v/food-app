@@ -15,10 +15,8 @@ import Tracking from "./Pages/Customer/TrackingPage/Tracking"
 import UserRating from "./Pages/Customer/UserRatingPage/UserRating"
 
 import { ShoppingCartPorvider } from './Context/ShoppingCartContext'
-import RegisterCustomer from './Pages/Customer/Register/RegisterCustomer'
-import RegisterMerchant from './Pages/Merchant/Register/RegisterMerchant'
-import RegisterRider from './Pages/Rider/Register/RegisterRider'
 import Signup from './Pages/Shared/Signup'
+import SignupCustomer from './Pages/Shared/SignupCustomer'
 import OrderList from './Pages/Customer/OrderList/OrderList'
 import TakenOrder from './Pages/Rider/TakenOrderPage/TakenOrder'
 import UpdateOrderStatus from './Pages/Rider/UpdateOrderStatusPage/UpdateOrderStatus'
@@ -53,9 +51,7 @@ function App() {
             <Route path="userRating" element={<UserRating />} />
             <Route path="orderList" element={<OrderList />} />
 
-            <Route path="customer/signup" element={<RegisterCustomer />} />
-            <Route path="merchant/signup" element={<RegisterMerchant />} />
-            <Route path="rider/signup" element={<RegisterRider />} />
+            <Route path="signupcustomer" element={<SignupCustomer />} />
 
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />

@@ -8,14 +8,14 @@ export const useSignup = () => {
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
 
-    const signup = async (username, password, role) => {
+    const signup = async (username, password, fullName, phoneNumber, role) => {
         setIsLoading(true)
         setError(null)
 
         const response = await fetch('https://api.dishdrop.pp.ua/api/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password, role }),
+            body: JSON.stringify({ username, password, firstName: fullName, phoneNumber, role }),
             credentials: 'include',
         });
         const token = await response.text()

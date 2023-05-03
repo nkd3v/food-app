@@ -5,48 +5,28 @@ import { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 
 const Shop = () => {
-    const [foodList, setFoodList] = useState([]);
     const [shopList, setShopList] = useState([]);
 
     useEffect(() => {
-        const fetchFoodData = async () => {
+        const fetchShopData = async () => {
             try {
-                const response = await fetch('https://api.dishdrop.pp.ua/api/menu');
+                const response = await fetch('https://api.dishdrop.pp.ua/api/Menu/restaurantcanteenpair');
                 const data = await response.json();
-                setFoodList(data);
+                setShopList(data);
             } catch (error) {
                 console.error('Error fetching food data: ', error);
             }
         };
 
-        fetchFoodData();
-
-        const myString = "example";
-        const hash = SHA256(myString).toString();
-
-        console.log(hash);
+        fetchShopData();
     }, []);
-
-    useEffect(() => {
-        if (foodList.length === 0) return
-
-        const hash = SHA256(foodList[0].restaurant).toString()
-        console.log(foodList[0].restaurant)
-        console.log(hash);
-
-        const rtrAndCanteenMapJson = [...new Set(foodList.map(obj => {
-            return JSON.stringify({name: obj.restaurant, canteen: obj.restaurantAddress})
-        }))]
-
-        setShopList(rtrAndCanteenMapJson.map(obj => JSON.parse(obj)))
-    }, [foodList])
 
     return (
         <div>
             <h1>เลือกร้านอาหาร</h1>
             <div className='ShopCard_container'>
                 {shopList.length > 0 ? shopList.map(shop => (
-                    <ShopCard key={v4()} id={SHA256(shop.name).toString()} name={shop} />
+                    <ShopCard key={v4()} id={SHA256(shop.restaurant).toString()} {...shop} />
                 )) : (
                     <p>Loading...</p>
                 )}

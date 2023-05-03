@@ -1,5 +1,7 @@
 export default function OrderStatus(status) {
     switch (status) {
+        case -1:
+            return 'ยกเลิก';
         case 0:
             return 'รอหาผู้ส่ง';
         case 25:

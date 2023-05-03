@@ -8,12 +8,13 @@ const CustomerDataTable = ({ orders, descriptionUrl }) => {
                 <tr>
                     <th>วันที่/เวลา</th>
                     <th>ร้านอาหาร</th>
-                    <th>ปลายทาง</th>
+                    <th>จุดส่งอาหาร</th>
                     <th>สถานะ</th>
                     <th>รายละเอียด</th>
                 </tr>
             </thead>
             <tbody>
+                {console.log(orders)}
                 {[...orders].reverse().map((order, index) => <CustomerData key={index} order={order} descriptionUrl={descriptionUrl} />)}
             </tbody>
         </Table>
