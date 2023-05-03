@@ -3,11 +3,13 @@ import { v4 } from 'uuid'
 import OrderStatus from '../../Utilities/OrderStatus'
 import './Order.css'
 
+
 function Order(order) {
     return (
         <div className='order-box'>
             <p><span className='font-weight-bold'>รหัสคำสั่งซื้อ:</span> {order.id}</p>
             <p>ผู้ใช้บริการ: {order.receiverName}</p>
+            <p>โรงอาหาร: {order.orderItems[0].menu.restaurantAddress}</p>
             <p>ร้านอาหาร: {order.orderItems[0].menu.restaurant}</p>
             <p>รายการอาหาร:</p>
             <ul>

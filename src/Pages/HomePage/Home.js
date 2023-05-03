@@ -40,7 +40,7 @@ const Home = () => {
                 <button
                     className="signup_button"
                     onClick={() => navigator('/signup?role=Rider')}>
-                    Signup as Rider
+                    Sign up as Rider
                 </button>
             </div>
 
@@ -55,7 +55,7 @@ const Home = () => {
                 <button
                     className="signup_button"
                     onClick={() => navigator('/signup?role=Customer')}>
-                    Signup as Customer
+                    Sign up as Customer
                 </button>
             </div>
         </div>

@@ -7,15 +7,6 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-.step-wizard {
-    background-color: #0b6efd;
-    background-image: linear-gradient(19deg, #0b6efd 0%, #b721ff 100%);
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .step-wizard-list{
     background: #fff;
     box-shadow: 0 15px 25px rgba(0,0,0,0.1);
@@ -38,7 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    min-width: 170px;
+    /* min-width: 70px; */
     position: relative;
 }
 .step-wizard-item + .step-wizard-item:after{

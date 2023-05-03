@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import Order from "../../../Components/Order/Order";
@@ -54,10 +54,10 @@ const TakeOrder = () => {
     }
 
     return order?.id ? (
-        <>
+        <Container>
             <Order key={uuidv4()} {...order} />
-            <Button className='ml-auto' key={uuidv4()} onClick={handleTakeOrder}>Take Order</Button>
-        </>
+            <Button className='mb-3' key={uuidv4()} onClick={handleTakeOrder}>Take Order</Button>
+        </Container>
     ) : <p>Loading...</p>
 };
 

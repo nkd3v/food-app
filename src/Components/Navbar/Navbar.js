@@ -1,15 +1,33 @@
-import { Navbar,NavbarBs, Nav, Container, Button, Image } from "react-bootstrap"
+import { Navbar, Nav, Container, Button, Image } from "react-bootstrap"
 import { NavLink } from "react-router-dom"
 import { useLogout } from "../../Hooks/useLogout"
 import { useAuthContext } from "../../Hooks/useAuthContext"
 import './Navbar.css'
 import logo from '../../Image/logo.png'
 import { useShoppingCart } from "../../Context/ShoppingCartContext"
+import { useEffect, useRef, useState } from "react"
 
 export function NavbarComponent() {
     const { logout } = useLogout()
     const { user } = useAuthContext()
     const { clearCart } = useShoppingCart()
+    
+    const [expanded, setExpanded] = useState(false);
+    const ref = useRef(null);
+  
+    useEffect(() => {
+      const handleClick = (e) => {
+        if (ref.current && !ref.current.contains(e.target)) {
+          setExpanded(false);
+        }
+      };
+  
+      document.addEventListener('click', handleClick);
+  
+      return () => {
+        document.removeEventListener('click', handleClick);
+      };
+    }, []);
 
     const handleLogout = () => {
         clearCart()
@@ -17,10 +35,12 @@ export function NavbarComponent() {
     }
 
     return (
-        <Navbar collapseOnSelect expand="lg" sticky="top" className="bg-white shadow-sm mb-3 ">
+        <Navbar collapseOnSelect expand="lg" sticky="top" expanded={expanded} className="bg-white shadow-sm mb-3 ">
             <Container>
-                <Image src={logo} alt="logo" className="logo" />
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Nav.Link to="/" as={NavLink} className="nav-item">
+                    <Image src={logo} alt="logo" className="logo" />
+                </Nav.Link>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={() => setExpanded(!expanded)} />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto navbar-nav">
                         {user === null && (
@@ -51,9 +71,9 @@ export function NavbarComponent() {
                             </>
                         )}
 
-                        <Nav.Link to="/about" as={NavLink} className="nav-item"> 
+                        {/* <Nav.Link to="/about" as={NavLink} className="nav-item">
                             About
-                        </Nav.Link>
+                        </Nav.Link> */}
                     </Nav>
                     <Nav className="ms-auto navbar-nav">
 
