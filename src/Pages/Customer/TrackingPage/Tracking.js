@@ -11,17 +11,14 @@ export default function Tracking() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch(`https://api.dishdrop.pp.ua/api/order/${id}`);
-        const data = await response.json();
-        setOrder(data)
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchData();
+    const worker = new Worker('/pollstatus.js');
+    worker.postMessage(`https://api.dishdrop.pp.ua/api/order/${id}`);
+    worker.onmessage = (event) => {
+      setOrder(event.data);
+    };
+    return () => {
+      worker.terminate();
+    };
   }, [id]);
 
   const handleCancel = async (event) => {
