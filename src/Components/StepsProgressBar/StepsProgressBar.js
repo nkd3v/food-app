@@ -24,3 +24,4 @@ function StepsProgressBar({ step }) {
 }
 
 export default StepsProgressBar
+
