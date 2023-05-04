@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { useSignup } from '../../Hooks/useSignup';
 import './Signup.css';
@@ -10,11 +10,17 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const [isUsernameInvalid, setIsUsernameInvalid] = useState(false);
+  const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
+  const [isFullNameInvalid, setIsFullNameInvalid] = useState(false);
+  const [isPhoneNumberInvalid, setIsPhoneNumberInvalid] = useState(false);
+
   const [step, setStep] = useState(1);
-  const [clicked, setClicked] = useState(false);
   const { signup, isLoading, error } = useSignup();
   const { user } = useAuthContext();
   const navigate = useNavigate();
+  const nextButtonRef = useRef();
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -36,10 +42,23 @@ function Signup() {
     setPhoneNumber(event.target.value);
   };
 
-  const handleSignup = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setClicked(true)
-    if (fullName === "" || phoneNumber === "") return;
+    if (step === 1) {
+      nextButtonRef.current.click();
+      return;
+    }
+
+    const checkPhoneNumber = (number) => {
+      const regex = /^[0-9]{10}$/;
+      return regex.test(number)
+    }
+
+    setIsFullNameInvalid(fullName === "")
+    setIsPhoneNumberInvalid(phoneNumber === "" || !checkPhoneNumber(phoneNumber))
+
+    if (fullName === "" || phoneNumber === "" || !checkPhoneNumber(phoneNumber)) return;
+    console.log({isFullNameInvalid, isPhoneNumberInvalid})
     console.log({ username, password, role })
     await signup(username, password, fullName, phoneNumber, role)
 
@@ -52,16 +71,11 @@ function Signup() {
   };
 
   const handleNext = async (event) => {
+    setIsUsernameInvalid(username === "");
+    setIsPasswordInvalid(password === "");
+
     if (username === "" || password === "") return;
     setStep(x => 2);
-  }
-
-  const hasAnyInputError = () => {
-    return error || isEmptyAndClicked()
-  }
-
-  const isEmptyAndClicked = () => {
-    return (username === "" || password === "") && clicked;
   }
 
   useEffect(() => {
@@ -74,7 +88,7 @@ function Signup() {
 
   return (
     <Container className='box signup-form-ctn'>
-      <Form onSubmit={handleSignup}>
+      <Form onSubmit={handleSubmit}>
         {step === 1 && (
           <>
             <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -84,9 +98,10 @@ function Signup() {
                 placeholder="Enter username"
                 value={username}
                 onChange={handleUsernameChange}
-                className={`${error && "is-invalid"}`}
+                className={`${isUsernameInvalid && "is-invalid"}`}
                 autoComplete="off"
               />
+              {isUsernameInvalid && <Form.Text className="text-danger">Please enter a valid username</Form.Text>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -96,12 +111,13 @@ function Signup() {
                 placeholder="Password"
                 value={password}
                 onChange={handlePasswordChange}
-                className={`${error && "is-invalid"}`}
+                className={`${isPasswordInvalid && "is-invalid"}`}
                 autoComplete="off"
               />
+              {isPasswordInvalid && <Form.Text className="text-danger">Please enter a valid password</Form.Text>}
             </Form.Group>
 
-            <Button className="mb-1" variant="primary" onClick={handleNext}>
+            <Button type="submit" className="mb-1" variant="primary" onClick={handleNext}>
               Next
             </Button>
           </>
@@ -116,9 +132,10 @@ function Signup() {
                 placeholder="Enter your name"
                 value={fullName}
                 onChange={handleFullNameChange}
-                className={`${error && "is-invalid"}`}
+                className={`${isFullNameInvalid && "is-invalid"}`}
                 autoComplete="off"
               />
+              {isFullNameInvalid && <Form.Text className="text-danger">Please enter a valid name</Form.Text>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicContact">
@@ -128,20 +145,26 @@ function Signup() {
                 placeholder="Enter your contact number"
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
-                className={`${error && "is-invalid"}`}
+                className={`${isPhoneNumberInvalid && "is-invalid"}`}
                 autoComplete="off"
               />
+              {isPhoneNumberInvalid && <Form.Text className="text-danger">Please enter a valid contact number</Form.Text>}
             </Form.Group>
 
-            <Button className="mb-1" variant="primary" type="submit" disabled={isLoading}>
+            <Button className="mb-1 me-2" variant="primary" type="submit" disabled={isLoading}>
               Signup
+            </Button>
+
+            <Button className="mb-1" variant="secondary" onClick={() => setStep(1)}>
+              Back
             </Button>
           </>
         )}
 
-        <Form.Text className={`invalid-feedback d-block ${hasAnyInputError() ? "visible" : "invisible"}`} id="passwordHelpBlock">
+        <Form.Text className="invalid-feedback d-block" id="passwordHelpBlock">
           {error}
         </Form.Text>
+
       </Form>
     </Container>
   );

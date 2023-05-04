@@ -25,6 +25,7 @@ export default function Tracking() {
       event.preventDefault();
       await fetch(`https://api.dishdrop.pp.ua/api/order/${id}`, {
           method: 'DELETE',
+          credentials: 'include',
       })
           .then((data) => console.log(data))
           .then(() => navigate('/'))

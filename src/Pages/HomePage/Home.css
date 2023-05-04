@@ -47,3 +47,13 @@ img {
 .login_button:hover, .signup_button:hover {
     background-color: #36b058;
 }
+
+.home_img_ctn {
+    width: 312px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.home_img_ctn img {
+    object-fit: contain;
+}

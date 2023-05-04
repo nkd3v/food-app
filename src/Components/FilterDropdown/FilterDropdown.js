@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 function FilterDropdown(props) {
-  const [selectedOption, setSelectedOption] = useState('ทั้งหมด');
+  const [selectedOption, setSelectedOption] = useState('เลือกโรงอาหาร');
 
   const handleSelect = (eventKey) => {
     setSelectedOption(eventKey);

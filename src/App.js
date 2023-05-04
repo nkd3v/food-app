@@ -1,5 +1,4 @@
 import Home from "./Pages/HomePage/Home"
-import AboutUs from "./Pages/AboutUs/AboutUs"
 
 //Rider
 import CustomerList from "./Pages/Rider/CustomerListPage/CustomerList"
@@ -16,7 +15,6 @@ import UserRating from "./Pages/Customer/UserRatingPage/UserRating"
 
 import { ShoppingCartPorvider } from './Context/ShoppingCartContext'
 import Signup from './Pages/Shared/Signup'
-import SignupCustomer from './Pages/Shared/SignupCustomer'
 import OrderList from './Pages/Customer/OrderList/OrderList'
 import TakenOrder from './Pages/Rider/TakenOrderPage/TakenOrder'
 import UpdateOrderStatus from './Pages/Rider/UpdateOrderStatusPage/UpdateOrderStatus'
@@ -35,7 +33,6 @@ function App() {
         <div>
           <Routes>
             <Route index element={<Home />} />
-            <Route path="aboutUs" element={<AboutUs />} />
 
             <Route path="customerList" element={<CustomerList />} />
             <Route path="takeOrder/:id" element={<TakeOrder />} />
@@ -50,8 +47,6 @@ function App() {
             <Route path="tracking/:id" element={<Tracking />} />
             <Route path="userRating" element={<UserRating />} />
             <Route path="orderList" element={<OrderList />} />
-
-            <Route path="signupcustomer" element={<SignupCustomer />} />
 
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />

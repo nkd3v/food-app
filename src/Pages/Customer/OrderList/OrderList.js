@@ -10,7 +10,9 @@ const OrderList = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch(`https://api.dishdrop.pp.ua/api/order/customer/${user.id}`);
+                const response = await fetch(`https://api.dishdrop.pp.ua/api/order/customer/${user.id}`, {
+                    credentials: 'include',
+                });
                 const data = await response.json();
                 setOrders(data);
             } catch (error) {

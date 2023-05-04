@@ -5,7 +5,7 @@ import { v4 } from "uuid";
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from "../../../Hooks/useAuthContext";
 import { useShoppingCart } from "../../../Context/ShoppingCartContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
@@ -19,6 +19,26 @@ const ShoppingCart = () => {
   const [isNameError, setIsNameError] = useState(false);
   const [isPhoneError, setIsPhoneError] = useState(false);
   const [isAddressError, setIsAddressError] = useState(false);
+
+  useEffect(() => {
+    // fetch user info from api
+    // set name, phone, address
+    const fetchUserInfo = async () => {
+      const response = await fetch(`https://api.dishdrop.pp.ua/api/user/${user.id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      });
+      const data = await response.json();
+
+      setName(data.firstName);
+      setPhone(data.phoneNumber);
+      setAddress(data.address);
+    }
+
+    fetchUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const price = cartItems.reduce(
     (accumulator, item) => accumulator + (item.menu.price * item.quantity),
@@ -35,13 +55,18 @@ const ShoppingCart = () => {
   const handleCheckout = async () => {
     setLoading(true)
 
+    const checkPhoneNumber = (number) => {
+      const regex = /^[0-9]{10}$/;
+      return regex.test(number)
+    }
+
     if (name === '') {
       setIsNameError(true)
     } else {
       setIsNameError(false)
     }
-    
-    if (phone === '') {
+
+    if (phone === '' || !checkPhoneNumber(phone)) {
       setIsPhoneError(true)
     } else {
       setIsPhoneError(false)
@@ -54,7 +79,6 @@ const ShoppingCart = () => {
     }
 
     if (name === '' || phone === '' || address === '') {
-      alert('กรุณากรอกข้อมูลให้ครบถ้วน')
       setLoading(false)
       return
     }
@@ -72,6 +96,7 @@ const ShoppingCart = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(finalOrder),
+      credentials: 'include',
     })
       .then(response => {
         if (!response.ok) {
@@ -84,6 +109,16 @@ const ShoppingCart = () => {
       .catch(error => {
         console.error('Error:', error);
       });
+
+      await fetch('https://api.dishdrop.pp.ua/api/User/updatedeliveryinfo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ firstName: name, address, phoneNumber: phone }),
+        credentials: 'include',
+      })
+
     clearCart()
     setLoading(false)
   }
@@ -96,18 +131,21 @@ const ShoppingCart = () => {
             <div>
               <Cart key={v4()} {...order} />
             </div>
-            <Form style={{ width: '100%' }}>
+            <Form className="w-100">
               <Form.Group className="mb-3">
                 <Form.Label>ชื่อผู้รับ</Form.Label>
                 <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} className={isNameError ? "is-invalid" : ""} />
+                {isNameError && <Form.Text className="text-danger">กรุณากรอกชื่อให้ถูกต้อง</Form.Text>}
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>เบอร์ติดต่อ</Form.Label>
                 <Form.Control type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className={isPhoneError ? "is-invalid" : ""} />
+                {isPhoneError && <Form.Text className="text-danger">กรุณากรอกเบอร์ติดต่อให้ถูกต้อง</Form.Text>}
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>จุดส่งอาหาร</Form.Label>
                 <Form.Control as="textarea" rows={3} value={address} onChange={(e) => setAddress(e.target.value)} className={isAddressError ? "is-invalid" : ""} />
+                {isAddressError && <Form.Text className="text-danger">กรุณากรอกจุดรับอาหารให้ถูกต้อง</Form.Text>}
               </Form.Group>
             </Form>
 

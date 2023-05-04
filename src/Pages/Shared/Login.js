@@ -9,6 +9,8 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { login, isLoading, error } = useLogin();
+  const [isUsernameError, setIsUsernameError] = useState(false);
+  const [isPasswordError, setIsPasswordError] = useState(false);
   const { user } = useAuthContext();
   const navigate = useNavigate()
 
@@ -22,6 +24,14 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+
+    setIsUsernameError(username === '')
+    setIsPasswordError(password === '')
+
+    if (username === '' || password === '') {
+      return;
+    }
+
     await login(username, password)
 
     if (error) {
@@ -50,7 +60,7 @@ function Login() {
             placeholder="Enter username"
             value={username}
             onChange={handleUsernameChange}
-            className={`${error && "is-invalid"}`}
+            className={`${(isUsernameError || error) && "is-invalid"}`}
             autoComplete="off"
           />
         </Form.Group>
@@ -62,7 +72,7 @@ function Login() {
             placeholder="Password"
             value={password}
             onChange={handlePasswordChange}
-            className={`${error && "is-invalid"}`}
+            className={`${(isPasswordError || error) && "is-invalid"}`}
             autoComplete="off"
           />
         </Form.Group>
@@ -71,8 +81,8 @@ function Login() {
           Login
         </Button>
 
-        <Form.Text className={`invalid-feedback d-block ${!error && "invisible"}`} id="passwordHelpBlock">
-          Incorrect username or password.
+        <Form.Text className={`invalid-feedback d-block ${!isUsernameError && !isPasswordError && !error && "invisible"}`} id="passwordHelpBlock">
+          Please check your username and password.
         </Form.Text>
       </Form>
     </Container>

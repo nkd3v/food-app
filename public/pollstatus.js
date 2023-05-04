@@ -1,5 +1,9 @@
 function fetchData(apiUrl) {
-  fetch(apiUrl)
+  fetch(apiUrl, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+  })
     .then((response) => response.json())
     .then((data) => {
       postMessage(data);

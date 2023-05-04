@@ -32,7 +32,9 @@ const Home = () => {
 
             <div className="card_">
                 <p>Would you like to order some food ?</p>
-                <img src={customerImage} alt="Rider" height="200px" />
+                <div class="home_img_ctn">
+                    <img src={customerImage} alt="Rider" height="200px" />
+                </div>
                 <button
                     className="login_button"
                     onClick={handleCustomer}>
@@ -40,14 +42,16 @@ const Home = () => {
                 </button>
                 <button
                     className="signup_button"
-                    onClick={() => navigator('/signupcustomer')}>
+                    onClick={() => navigator('/signup?role=Customer')}>
                     Sign up as Customer
                 </button>
             </div>
             
             <div className="card_">
                 <p>If you want to delivery a food</p>
-                <img src={riderImage} alt="Rider" height="200px" />
+                <div class="home_img_ctn">
+                    <img src={riderImage} alt="Rider" height="200px" />
+                </div>
                 <button
                     className="login_button"
                     onClick={handleRider}>

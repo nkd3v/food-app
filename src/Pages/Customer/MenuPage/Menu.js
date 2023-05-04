@@ -10,7 +10,10 @@ const Menu = () => {
   useEffect(() => {
     const fetchFoodData = async () => {
       try {
-        const response = await fetch(`https://api.dishdrop.pp.ua/api/menu/restaurant/${id}`);
+        const response = await fetch(`https://api.dishdrop.pp.ua/api/menu/restaurant/${id}`, {
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+        });
         const data = await response.json();
         setFoodList(data);
       } catch (error) {

@@ -14,11 +14,13 @@ const Shop = () => {
     useEffect(() => {
         const fetchShopData = async () => {
             try {
-                const response = await fetch('https://api.dishdrop.pp.ua/api/Menu/restaurantcanteenpair');
+                const response = await fetch('https://api.dishdrop.pp.ua/api/Menu/restaurantcanteenpair', {
+                    credentials: 'include',
+                });
                 const data = await response.json();
                 setShopList(data);
                 setAllShopList(data);
-                setOptions(['ทั้งหมด', ...new Set(data.map(shop => shop.canteen))]);
+                setOptions(['เลือกโรงอาหาร', ...new Set(data.map(shop => shop.canteen))]);
             } catch (error) {
                 console.error('Error fetching food data: ', error);
             }
@@ -28,7 +30,7 @@ const Shop = () => {
     }, []);
 
     const handleFilter = (filterOption) => {
-        if (filterOption === 'ทั้งหมด') {
+        if (filterOption === 'เลือกโรงอาหาร') {
             setShopList(allShopList);
         } else {
             setShopList(allShopList.filter(shop => shop.canteen === filterOption));

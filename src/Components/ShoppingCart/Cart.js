@@ -16,7 +16,7 @@ function Cart(order) {
             <p>ราคาสุทธิ: {order.orderItems.reduce(
                 (accumulator, item) => accumulator + (item.menu.price * item.quantity),
                 0
-            )}</p>
+            )} บาท</p>
         </div>
     )
 }
