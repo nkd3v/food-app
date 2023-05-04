@@ -32,8 +32,8 @@ export const authReducer = (state, action) => {
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, initialState, () => {
         const user = JSON.parse(localStorage.getItem('user'))
-        const token = document.cookie.split(';').find(cookie => cookie.includes('access_token'))
-        console.log(user)
+        const token = document.cookie.split(';').find(cookie => cookie.includes('access_token')).split("=")[1]
+        console.log({user, token})
         if (user && token) {
             return { isAuthenticated: true, user, token }
         }

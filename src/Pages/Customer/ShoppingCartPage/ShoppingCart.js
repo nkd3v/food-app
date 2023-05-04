@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
-  const { user } = useAuthContext()
+  const { user, token } = useAuthContext()
   const { cartItems, clearCart } = useShoppingCart()
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -21,6 +21,7 @@ const ShoppingCart = () => {
   const [isAddressError, setIsAddressError] = useState(false);
 
   useEffect(() => {
+    console.log({user, token})
     // fetch user info from api
     // set name, phone, address
     const fetchUserInfo = async () => {
@@ -90,6 +91,18 @@ const ShoppingCart = () => {
       address,
     }
 
+    clearCart()
+
+    await fetch('https://api.dishdrop.pp.ua/api/User/updatedeliveryinfo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ firstName: name, address, phoneNumber: phone }),
+      credentials: 'include',
+    })
+
     await fetch('https://api.dishdrop.pp.ua/api/order', {
       method: 'POST',
       headers: {
@@ -110,16 +123,6 @@ const ShoppingCart = () => {
         console.error('Error:', error);
       });
 
-      await fetch('https://api.dishdrop.pp.ua/api/User/updatedeliveryinfo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ firstName: name, address, phoneNumber: phone }),
-        credentials: 'include',
-      })
-
-    clearCart()
     setLoading(false)
   }
 
