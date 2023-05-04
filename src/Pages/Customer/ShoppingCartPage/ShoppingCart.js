@@ -97,7 +97,7 @@ const ShoppingCart = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${document.cookie.split(';').find(cookie => cookie.includes('access_token'))?.split("=")[1]}`,
       },
       body: JSON.stringify({ firstName: name, address, phoneNumber: phone }),
       credentials: 'include',

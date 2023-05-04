@@ -32,7 +32,7 @@ const Home = () => {
 
             <div className="card_">
                 <p>Would you like to order some food ?</p>
-                <div class="home_img_ctn">
+                <div className="home_img_ctn">
                     <img src={customerImage} alt="Rider" height="200px" />
                 </div>
                 <button
@@ -49,7 +49,7 @@ const Home = () => {
             
             <div className="card_">
                 <p>If you want to delivery a food</p>
-                <div class="home_img_ctn">
+                <div className="home_img_ctn">
                     <img src={riderImage} alt="Rider" height="200px" />
                 </div>
                 <button
