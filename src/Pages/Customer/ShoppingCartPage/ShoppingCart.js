@@ -78,7 +78,7 @@ const ShoppingCart = () => {
       setIsAddressError(false)
     }
 
-    if (name === '' || phone === '' || address === '') {
+    if (name === '' || phone === '' || address === '' || !checkPhoneNumber(phone)) {
       setLoading(false)
       return
     }
